@@ -1,17 +1,13 @@
 swagger: '2.0'
 info:
-  description: An initial attempt to describe the MEC UE Identity API using OpenAPI
-  version: 0.0.6
+  description: The ETSI MEC ISG MEC014 UE Identity API described using OpenAPI
+  version: 0.0.9
   title: UE Identity API
-  termsOfService: TBD
-  contact:
-    name: TBD
-    url: TBD
   license:
-    name: ETSI MEC
-    url: TBD
+    name: ETSI Forge copyright notice
+    url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
 externalDocs:
-  description: ETSI MEC014 V0.0.6 UE Identity API
+  description: ETSI GS MEC014 UE Identity API, V0.0.9
   url: 'https://docbox.etsi.org/ISG/MEC/70-Draft/0014UEidentityAPI'
 host: '127.0.0.1:8081'
 basePath: /uis/v1
@@ -34,7 +30,7 @@ securityDefinitions:
       all: Single oauth2 scope for API
 parameters:
   Body.UeIdentityTagInfo:
-    name: ueIdentityTagInfo
+    name: UeIdentityTagInfo
     in: body
     description: information of UE identity tag used in UE Identity feature.
     required: true
@@ -68,9 +64,9 @@ paths:
             contains a representation of the resource.
           schema:
             required:
-              - ueIdentityTagInfo
+              - UeIdentityTagInfo
             properties:
-              ueIdentityTagInfo:
+              UeIdentityTagInfo:
                 $ref: '#/definitions/UeIdentityTagInfo'
         '400':
           description: >-
@@ -116,9 +112,9 @@ paths:
             updated UeIdentityTagInfo is returned.
           schema:
             required:
-              - ueIdentityTagInfo
+              - UeIdentityTagInfo
             properties:
-              ueIdentityTagInfo:
+              UeIdentityTagInfo:
                 $ref: '#/definitions/UeIdentityTagInfo'
         '400':
           description: >-
@@ -217,7 +213,7 @@ definitions:
     description: Tag presented by ME Application to ME Platform
     type: string
   State:
-    description: status of the resource ueIdentityTagInfo
+    description: Status of the resource ueIdentityTagInfo
     type: string
     enum:
       - UNREGISTERED
