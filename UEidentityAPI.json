@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "The ETSI MEC ISG MEC014 UE Identity API described using OpenAPI",
-    "version": "0.0.9",
+    "version": "1.0.2",
     "title": "UE Identity API",
     "license": {
       "name": "ETSI Forge copyright notice",
@@ -10,11 +10,11 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC014 UE Identity API, V0.0.9",
+    "description": "ETSI GS MEC014 UE Identity API, V1.0.2",
     "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0014UEidentityAPI"
   },
   "host": "127.0.0.1:8081",
-  "basePath": "/uis/v1",
+  "basePath": "/ui/v1",
   "schemes": [
     "http",
     "https"
@@ -46,7 +46,7 @@
     "Body.UeIdentityTagInfo": {
       "name": "UeIdentityTagInfo",
       "in": "body",
-      "description": "information of UE identity tag used in UE Identity feature.",
+      "description": "'The updated \"state\" for each included UE Identity tag is included in the entity body of the request'",
       "required": true,
       "schema": {
         "$ref": "#/definitions/UeIdentityTagInfo"
@@ -59,32 +59,37 @@
       "required": true,
       "type": "string"
     },
-    "Path.UeIdentityTag": {
+    "Query.UeIdentityTag": {
       "name": "ueIdentityTag",
-      "in": "path",
+      "in": "query",
       "description": "Represents a UE",
       "required": true,
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "paths": {
-    "/{appInstanceId}/ue_identity_tag_info/{ueIdentityTag}": {
+    "/{appInstanceId}/ue_identity_tag_info": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/Path.AppInstanceId"
+        }
+      ],
       "get": {
-        "description": "retrieves information about a ueIdentityTagInfo resource",
+        "description": "Retrieves information about a specific UeIdentityTagInfo resource",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "$ref": "#/parameters/Path.AppInstanceId"
-          },
-          {
-            "$ref": "#/parameters/Path.UeIdentityTag"
+            "$ref": "#/parameters/Query.UeIdentityTag"
           }
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+            "description": "It is used to indicate nonspecific success. The response body contains a representation of the UeIdentityTagInfo resource.",
             "schema": {
               "required": [
                 "UeIdentityTagInfo"
@@ -132,24 +137,18 @@
         }
       },
       "put": {
-        "description": "registers/de-registers a UE identity tag in UE Identity Service ",
+        "description": "Register/De-register the information about specific a UeIdentityTagInfo resource",
         "produces": [
           "application/json"
         ],
         "parameters": [
-          {
-            "$ref": "#/parameters/Path.AppInstanceId"
-          },
-          {
-            "$ref": "#/parameters/Path.UeIdentityTag"
-          },
           {
             "$ref": "#/parameters/Body.UeIdentityTagInfo"
           }
         ],
         "responses": {
           "200": {
-            "description": "Upon success, a response body containing data type describing the updated UeIdentityTagInfo is returned.",
+            "description": "It is used to indicate success. The response body contains a representation of the UeIdentityTagInfo resource",
             "schema": {
               "required": [
                 "UeIdentityTagInfo"
@@ -266,21 +265,36 @@
       "description": "information of UE identity tag used in UE Identity feature",
       "type": "object",
       "required": [
-        "ueIdentityTag",
-        "state"
+        "ueIdentityTags"
       ],
       "properties": {
-        "ueIdentityTag": {
-          "$ref": "#/definitions/UeIdentityTag"
-        },
-        "state": {
-          "$ref": "#/definitions/State"
+        "ueIdentityTags": {
+          "$ref": "#/definitions/UeIdentityTags"
+        }
+      }
+    },
+    "UeIdentityTags": {
+      "description": "1 to N tags presented by a ME Application instance to a ME Platform",
+      "type": "array",
+      "items": {
+        "required": [
+          "ueIdentityTag",
+          "state"
+        ],
+        "properties": {
+          "ueIdentityTag": {
+            "$ref": "#/definitions/UeIdentityTag"
+          },
+          "state": {
+            "$ref": "#/definitions/State"
+          }
         }
       }
     },
     "UeIdentityTag": {
-      "description": "Tag presented by ME Application to ME Platform",
-      "type": "string"
+      "description": "Specific tag presented by a ME Application instance to a ME Platform",
+      "type": "string",
+      "example": "UeTagA"
     },
     "State": {
       "description": "Status of the resource ueIdentityTagInfo",
@@ -288,7 +302,8 @@
       "enum": [
         "UNREGISTERED",
         "REGISTERED"
-      ]
+      ],
+      "example": "REGISTERED"
     }
   }
 }
