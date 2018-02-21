@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "The ETSI MEC ISG MEC014 UE Identity API described using OpenAPI",
-    "version": "1.0.2",
+    "version": "1.1.1",
     "title": "UE Identity API",
     "license": {
       "name": "ETSI Forge copyright notice",
@@ -10,8 +10,8 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC014 UE Identity API, V1.0.2",
-    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0014UEidentityAPI"
+    "description": "ETSI GS MEC014 UE Identity API, V1.1.1",
+    "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/014/01.01.01_60/gs_mec014v010101p.pdf"
   },
   "host": "127.0.0.1:8081",
   "basePath": "/ui/v1",
