@@ -4,8 +4,8 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 
 ## Online resources
 
-* [Navigate the API in the browser](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs014-ue-identity-api/raw/master/UEidentityAPI.yaml).
-* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs014-ue-identity-api/raw/master/UEidentityAPI.yaml).
+* [Navigate the API in the browser](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs014-ue-identity-api/raw/stf606-final/UEidentityAPI.yaml).
+* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs014-ue-identity-api/raw/stf606-final/UEidentityAPI.yaml).
 
 ## License
 
